@@ -1,0 +1,6 @@
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>Do you want to delete your review ?</p>
+    <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
+    <input type="submit" value="Confirm">
+</form>

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+
+{% endblock title %}
+
+{% block content %}
+
+
+{% if page == 'Registration' %}
+
+<div class="cart-card">
+    <div class="cart-row-container">
+        <div class="col-md-8 cart">
+            <div class="cart-title">
+                <div class="cart-row">
+                    <div class="cart-col">
+                        <h4><b>REGISTER</b></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-row border-top border-bottom">
+                <div class="cart-row main align-items-center">
+                    <!-- <div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <ul><li>{{message}}</li></ul>
+                            {% endfor %}
+                        {% endif %}
+                    </div> -->
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-dark" type="submit" value="Login">Register</button>
+                    </form>
+                </div>
+            </div>
+            <div 
+                class="back-to-shop"><a href="{% url 'index' %}">&leftarrow;</a><span class="text-muted">Back to Shop</span>
+            </div>
+        </div>
+        <div class="col-md-4 summary" style="display: flex;
+            flex-direction: column; align-items: center; justify-content: center;">
+            <p>Already registered ?</p>
+            <div><a href="{% url 'login' %}">Login</a></div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+<div class="cart-card">
+    <div class="cart-row-container">
+        <div class="col-md-8 cart">
+            <div class="cart-title">
+                <div class="cart-row">
+                    <div class="cart-col">
+                        <h4><b>LOGIN</b></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-row border-top border-bottom">
+                <div class="cart-row main align-items-center">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <label > Username: </label>
+                        <input type="text" name="username" placeholder="Enter username"/>
+                
+                        <label >Password: </label>
+                        <input type="password" name="password" placeholder= "Enter password"/>
+                
+                        <button class="btn btn-dark" type="submit" value="Login">Login</button>
+                    </form>
+                </div>
+            </div>
+            <div 
+                class="back-to-shop"><a href="{% url 'index' %}">&leftarrow;</a><span class="text-muted">Back to Shop</span>
+            </div>
+        </div>
+        <div class="col-md-4 summary" style="display: flex;
+         flex-direction: column; align-items: center; justify-content: center;">
+            <p>Haven't register yet ?</p>
+            <div><a href="{% url 'register' %}">Register</a></div>
+            <hr>
+            <hr>
+            <p>Forgot Password ?</p>
+            <div><a href="{% url 'password_reset' %}">Reset Password</a></div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock content%}
+

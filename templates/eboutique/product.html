@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}
+<div>
+    <h2>{{product.collection}} | {{product.title}}</h2>
+    <hr>
+</div>
+{% endblock title %}
+
+{% block content %}
+<style>
+    div {
+        padding-left: 20px;
+    }
+    h2 {
+        padding-top: 20px;
+    }
+    h4 {
+        padding-top: 20px;
+        padding-left: 20px;
+    }
+    h6 {
+        padding-left: 50px;
+    }
+
+    a {
+        color: black;
+    }
+
+    .message-comment {
+        font-style: italic;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: darkblue;
+    }
+</style>
+<div><h4>Description</h4></div>
+<hr>
+<div><h6>{{product.description}}</h6></div>
+{{product.price}} 
+
+<!-- <div>
+    <div><h4>Reviews</h4></div>
+    <div>
+        {% for message in product_messages %}
+        <li><div>{{message}}</div></li>
+            <div>
+                <a href="{% url 'update-review' message.id %}">Update</a>
+                <a href="{% url 'delete-review' message.id %}">Delete</a>
+            </div>
+        <hr>
+        {% endfor %}
+    </div>
+    <div>
+        <a href="{% url 'create-review' %}">Add a review</a>
+    </div>
+</div> -->
+
+<hr>
+{% if comments_count >= 2 %}
+<div><h4>{{comments_count}} Reviews</h4></div>
+{% else %}
+<div><h4>{{comments_count}} Review</h4></div>
+{% endif %}
+<div>
+    {% for message in product_messages %}
+        <div>@{{message.host}}</div>
+        <div class="message-comment">{{message}}</div>
+        <div>
+            {% if request.user == message.host %}
+            <a href="{% url 'update-review' message.id %}">Update</a>
+            <a href="{% url 'delete-review' message.id %}">Delete</a>
+            {% endif %}
+        </div>
+        <div>On {{message.updated}}</div>
+    <hr>
+    {% endfor %}
+</div>
+{% if request.user.is_authenticated %}
+<div class="comment-form">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="body" placeholder="Write your comment here..."/>
+        <input type="submit" value="Comment"/>
+    </form>
+</div>
+
+{% else %}
+<p><li>You must login to add a review</li></p>
+{% endif %}
+
+{% endblock content %}

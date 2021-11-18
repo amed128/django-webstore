@@ -1,0 +1,34 @@
+<!-- {% extends "base.html" %}
+
+{% block title %}
+
+<div>
+    <h2>Eboutique | {{collection.name}}</h2>
+    <hr>
+</div>
+
+{% endblock title %}
+
+
+{% block content %}
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        a:hover {
+            color: black;
+            border-bottom: 1px solid black;
+        }
+    </style>
+    <div>
+        {% for product in products %}
+
+        <ul>
+            <li><a href="{% url 'product' product.id %}">{{product.title}}</a> by {{product.brand}}  ---- {{product.description}}</li>
+            <hr>
+        </ul>
+
+        {% endfor %}
+    </div>
+{% endblock content %} -->

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+<div class="homeText">
+    <div class="welcomeText">
+        <h1>WELCOME TO eBOUTIQUE</h1>
+    </div>
+    <div class="subText">
+        <h4>HERE TO SERVE YOUR STYLE GAME</h4>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="homeContentWrapper">
+    <div>
+        <hr>
+    </div>
+    
+    <div class="homeContent">
+        <div class="leftContent">
+            <div>
+                <h5>CATEGORIES</h5>
+            </div>
+            <div>
+                {% for collection in collections %}
+                <ul>
+                    <hr>
+                    <!-- <li><a href="{% url 'collection' collection.name %}">{{collection.name}}</a></li> -->
+                    <li><a href="{% url 'index' %}?q={{collection.name}}">{{collection.name|upper}}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+            <hr>
+            <div>
+                <h5>BRANDS</h5>
+            </div>
+            <div>
+                {% for brand in brands %}
+                <ul>
+                    <hr>
+                    <li><a href="{% url 'index' %}?q={{brand.name}}">{{brand.name|upper}}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+            <hr>
+        </div>
+        <div class="rightContent">
+            <div class="pWrapper">
+                <div>
+                    <div class="pWraperText">ALL PRODUCTS</div>
+                </div>
+                <div class="filterContent">
+                    <form class="formFilter" action="">
+                        <!-- <label for="product-filter">Filter by :</label> -->
+                        <select class="selectFilter" name="q" id="product-filter" onchange="this.form.submit()">
+                            {% if q == "" %}
+                                <option value="">Filter by ...</option>
+                            {%else %}
+                                <option value="">{{q}}</option>
+                            {% endif %}
+                            <option value="">All Products</option>
+                            {% for collection in collections %}
+                            <option value="{{collection}}">{{collection}}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+                <div>
+                    <form class="d-flex" method="GET" action="{% url 'index' %}">
+                        <input class="form-control me-2 sform" name="q" type="search" placeholder="Search" aria-label="Search">
+                        <button class="searchBtn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                {% for product in page_obj %}
+                <div class="col-lg-auto row-padd">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{product.imageURL}}" class="card-img-top" alt="{{product.title}}">
+                        <div class="card-body">
+                          <h5 class="card-title">{{product.title}}</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">by {{product.brand}}</h6>
+                          <p class="card-text">${{product.price}}</p>
+                          <a href="{% url 'product' product.id %}" class="btn btn-dark">Details</a>
+                          <button data-product={{product.id}} data-action="add" type="button" class="btn btn-dark update-cart">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}       
+            </div>
+            <div class="pagination">
+                <span class="pagination-links">
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-dark" href="?page=1"> 1</a>
+                        <a class="btn btn-dark" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                    {% endif %}
+            
+                    <div class="btn btn-dark" href="#">
+                        Page {{ page_obj.number }}
+                    </div>
+            
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-dark" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                        <a class="btn btn-dark" href="?page={{ page_obj.paginator.num_pages }}"> {{ page_obj.paginator.num_pages }}</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+
+{% endblock content %}
+

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+<div class="cart-card">
+    <div class="cart-row-container">
+        <div class="col-md-8 cart">
+            <div class="cart-title">
+                <div class="cart-row">
+                    <div class="cart-col">
+                        <h4><b>CHECKOUT</b></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-row border-top border-bottom">
+                <div class="cart-row main align-items-center">
+                    <div class="comment-form">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p}}
+                            <button class="btn btn-dark" type="submit" value="submit">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="back-to-shop"><a href="{% url 'cart' %}">&leftarrow;</a><span class="text-muted">Back to Cart</span></div>
+        </div>
+        <div class="col-md-4 summary">
+            <div>
+                <h5><b>Summary</b></h5>
+            </div>
+            <div class="cart-row cart-it main align-items-center">
+                <div class="cart-col-title text-muted">Items</div>
+                <div class="cart-col-title text-muted">Title</div>
+                <div class="cart-col-title text-muted">Quantity</div>
+                <div class="cart-col-title text-muted">Price</div>
+            </div>
+            <hr>
+            <div class="cart-row">
+                <!-- all products -->
+                {% for item in items%}
+                <div class="cart-row border-top border-bottom">
+                    <div class="cart-row cart-it main align-items-center">
+                        <div class="cart-col"><img class="img-fluid" src="{{item.product.imageURL}}"></div>
+                        <div class="cart-col brand-title">
+                            <div class="cart-row">{{item.product.title}}</div>
+                            <div class="cart-row text-muted">{{item.product.brand}}</div>
+                        </div>
+                        <div class="cart-col"> 
+                            <a href="#" class="border">x {{item.quantity}}</a>
+                        </div>
+                        <div class="cart-col">&dollar;{{item.get_total}}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="cart-row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="cart-col">TOTAL PRICE</div>
+                <div class="cart-col text-right">&dollar; {{order.get_cart_total}}
+            </div>
+            <!-- </div> <button class="btn">PAYMENT</button> -->
+        </div>
+    </div>
+</div>
+{% endblock %}

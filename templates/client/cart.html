@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+<div class="cart-card">
+    <div class="cart-row-container">
+        <div class="col-md-8 cart">
+            <div class="cart-title">
+                <div class="cart-row">
+                    <div class="cart-col">
+                        <h4><b>Shopping Cart</b></h4>
+                    </div>
+                    <div class="cart-row cart-it main align-items-center">
+                        <div class="cart-col text-muted">Items</div>
+                        <div class="cart-col text-muted">Title</div>
+                        <div class="cart-col text-muted">Quantity</div>
+                        <div class="cart-col text-muted">Price</div>
+                    </div>
+                </div>
+            </div>
+            
+            {% for item in items%}
+            <div class="cart-row border-top border-bottom">
+                <div class="cart-row cart-it main align-items-center">
+                    <div class="cart-col"><img class="img-fluid" src="{{item.product.imageURL}}"></div>
+                    <div class="cart-col brand-title">
+                        <div class="cart-row">{{item.product.title}}</div>
+                        <div class="cart-row text-muted">{{item.product.brand}}</div>
+                    </div>
+                    <div class="cart-col"> 
+                        <a data-product={{item.product.id}} data-action="remove" class="qtity border update-cart">-</a>
+                        <!-- <a data-product={{item.product.id}} data-action="remove" class="qtity border update-cart" href="./">-</a> -->
+                        <a href="#" class="border">{{item.quantity}}</a>
+                        <a data-product={{item.product.id}} data-action="add" class="qtity border update-cart">+</a>
+                        <!-- <a data-product={{item.product.id}} data-action="add" class="qtity border update-cart" onclick="window.location.reload()">+</a> -->
+                    </div>
+                    <div class="cart-col">&dollar;{{item.get_total}} <span 
+                        data-product={{item.product.id}} data-action="delete" class="close del-product update-cart">&#10005;</span></div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-cart"><h5>Your cart is empty :( </h5></div>
+            {% endfor %}
+
+            <div class="back-to-shop"><a href="{% url 'index' %}">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+        </div>
+        <div class="col-md-4 summary">
+            <div>
+                <h5><b>Summary</b></h5>
+            </div>
+            <hr>
+            <div class="cart-row">
+                <div class="cart-col text-right">{{order.get_cart_items}} Items</div>
+                <div class="cart-col text-right">Total : &dollar; {{order.get_cart_total}}</div>
+            </div>
+            <form>
+                <p>SHIPPING</p> <select>
+                    <option class="text-muted">Standard-Delivery- &euro;0.00</option>
+                    <!-- <option class="text-muted">Express-Delivery- &euro;5.00</option> -->
+                </select>
+                <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
+            </form>
+            <div class="cart-row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="cart-col">TOTAL PRICE</div>
+                <div class="cart-col text-right">&dollar; {{order.get_cart_total}}</div>
+            </div> 
+            <!-- <button class="btn">CHECKOUT</button> -->
+            <a href="{% url 'checkout' %}" class="btn btn-dark">CHECKOUT</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
