@@ -114,3 +114,5 @@ def deleteReview(request, pk):
         return redirect('index')
     return render(request, 'eboutique/delete.html', {}) 
 
+####
+
