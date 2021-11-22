@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s5q!t-y2*0-4g0_j)i@(-w@9#np!w3^xro&9b#eu#a8)$np3$_'
+# SECRET_KEY = 'django-insecure-s5q!t-y2*0-4g0_j)i@(-w@9#np!w3^xro&9b#eu#a8)$np3$_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -50,7 +50,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    
+
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
