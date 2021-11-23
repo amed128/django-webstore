@@ -24,7 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-s5q!t-y2*0-4g0_j)i@(-w@9#np!w3^xro&9b#eu#a8)$np3$_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False   #prod
+if os.environ.get('ENV') == 'PRODUCTION':
+    DEBUG = False
+else:
+    DEBUG = True
+    SECRET_KEY = 'django-insecure-s5q!t-y2*0-4g0_j)i@(-w@9#np!w3^xro&9b#eu#a8)$np3$_'
 
 ALLOWED_HOSTS = ['momo-webstore.herokuapp.com', '127.0.0.1']
 
@@ -60,8 +64,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'webstore.urls'
 
@@ -133,7 +135,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   #prod
+if os.environ.get('ENV') == 'PRODUCTION':
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   #prod
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
