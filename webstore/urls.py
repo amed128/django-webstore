@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from eboutique import views as main_views
 from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', main_views.index),
     path('eboutique/', include('eboutique.urls')),
     path('client/', include('client.urls')),
     path('account/', include('account.urls')),
