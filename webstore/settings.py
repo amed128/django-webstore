@@ -150,7 +150,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     DATABASES['default'].update(db_from_env)
 
 # STATIC_URL = '/static/'
-# STATICFILES_DIRS = [BASE_DIR / "static",]
+STATICFILES_DIRS = [BASE_DIR / "static",]
 # # MEDIA_ROOT = os.path.join(BASE_DIR, 'static/eboutique/img')
 # # MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
