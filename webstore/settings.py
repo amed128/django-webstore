@@ -147,10 +147,10 @@ USE_TZ = True
 STATICFILES_DIRS = [BASE_DIR / "static",]
 # # MEDIA_ROOT = os.path.join(BASE_DIR, 'static/eboutique/img')
 # # MEDIA_URL = '/images/'
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -183,8 +183,8 @@ AWS_DEFAULT_ACL = None
 AWS_PRELOAD_METADATA = True
 
 
-STATIC_URL = AWS_URL + '/static/'
-MEDIA_URL = AWS_URL + '/media/'
+# STATIC_URL = AWS_URL + '/static/'
+# MEDIA_URL = AWS_URL + '/media/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
