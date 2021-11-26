@@ -67,6 +67,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 ROOT_URLCONF = 'webstore.urls'
 
 TEMPLATES = [
@@ -138,20 +140,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 if os.environ.get('ENV') == 'PRODUCTION':
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles') 
-    STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static'),
-    )
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+    # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles') 
+    # STATICFILES_DIRS = (
+    #     os.path.join(PROJECT_ROOT, 'static'),
+    # )
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
 
 # STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static",]
+# STATICFILES_DIRS = [BASE_DIR / "static",]
 # # MEDIA_ROOT = os.path.join(BASE_DIR, 'static/eboutique/img')
 # # MEDIA_URL = '/images/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
 
