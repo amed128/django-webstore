@@ -188,7 +188,7 @@ AWS_DEFAULT_ACL = None
 STATIC_URL = AWS_URL + '/static/'
 MEDIA_URL = AWS_URL + '/media/'
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 import django_on_heroku
