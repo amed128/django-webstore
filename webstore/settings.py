@@ -186,7 +186,7 @@ AWS_PRELOAD_METADATA = True
 # STATIC_URL = AWS_URL + '/static/'
 # MEDIA_URL = AWS_URL + '/media/'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'eboutique.custom_storage.MediaStorage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 import django_on_heroku
