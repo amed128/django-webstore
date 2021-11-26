@@ -143,7 +143,6 @@ if os.environ.get('ENV') == 'PRODUCTION':
     # STATICFILES_DIRS = (
     #     os.path.join(PROJECT_ROOT, 'static'),
     # )
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     db_from_env = dj_database_url.config(conn_max_age=500)
@@ -153,6 +152,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 STATICFILES_DIRS = [BASE_DIR / "static",]
 # # MEDIA_ROOT = os.path.join(BASE_DIR, 'static/eboutique/img')
 # # MEDIA_URL = '/images/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
 
