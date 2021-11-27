@@ -147,10 +147,11 @@ USE_TZ = True
 STATICFILES_DIRS = [BASE_DIR / "static",]
 # # MEDIA_ROOT = os.path.join(BASE_DIR, 'static/eboutique/img')
 # # MEDIA_URL = '/images/'
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -175,16 +176,13 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 S3_BUCKET = os.environ.get('S3_BUCKET')
-AWS_URL = os.environ.get('AWS_URL')
+# AWS_URL = os.environ.get('AWS_URL')
 AWS_QUERYSTRING_AUTH = False
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 AWS_PRELOAD_METADATA = True
 
-
-# STATIC_URL = AWS_URL + '/static/'
-# MEDIA_URL = AWS_URL + '/media/'
 
 DEFAULT_FILE_STORAGE = 'eboutique.custom_storage.MediaStorage'
 STATICFILES_STORAGE = 'eboutique.custom_storage.StaticStorage'
