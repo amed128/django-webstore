@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'eboutique/css/bootstrap.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'eboutique/css/home.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'client/css/cart.css' %}" />
@@ -10,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eBoutique</title>
+    <title>Eboutique</title>
     <script type="text/javascript">
       var user = '{{request.user}}'
 
@@ -43,7 +44,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/eboutique/">Home</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,8 +63,20 @@
                 </ul>
                 <div class="nav-item item-login">
                   {% if request.user.is_authenticated %}
-                    <div>@{{request.user.username}}</div>
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    <div class="dropdown">
+                      <div class="user-logo dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>
+                        </i>
+                        <div>{{request.user.username}}</div>
+                      </div>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                      </ul>
+                    </div>
                     <div>
                       <a href="{% url 'cart' %}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -72,18 +85,6 @@
                         <span class='badge badge-warning' id='lblCartCount'> {{order.get_cart_items}}</span>
                       </a>
                     </div>
-                    <style>
-                      .item-login {
-                        display: flex;
-                        /* flex-direction: column; */
-                        align-items: center;
-                        padding: 10px;
-                      }
-                      .item-login a {
-                        text-decoration: none;
-                        color: black;
-                      }
-                    </style>
                   {% else %}
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
                   {% endif %}
