@@ -51,7 +51,7 @@
         <div class="rightContent">
             <div class="pWrapper">
                 <div>
-                    <div class="pWraperText">ALL PRODUCTS</div>
+                    <div class="pWrapperText">ALL PRODUCTS</div>
                 </div>
                 <div class="filterContent">
                     <form class="formFilter" action="">
@@ -77,20 +77,20 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
+            <div class="row productWrapper">
                 {% for product in page_obj %}
-                <div class="col-lg-auto row-padd">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{product.imageURL}}" class="card-img-top" alt="{{product.title}}">
-                        <div class="card-body">
-                          <h5 class="card-title">{{product.title}}</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">by {{product.brand}}</h6>
-                          <p class="card-text">${{product.price}}</p>
-                          <a href="{% url 'product' product.id %}" class="btn btn-dark">Details</a>
-                          <button data-product={{product.id}} data-action="add" type="button" class="btn btn-dark update-cart">Add to cart</button>
-                        </div>
+                <!-- <div class="col-lg row-padd"> -->
+                <div class="card row-padd">
+                    <img src="{{product.imageURL}}" class="card-img-top" alt="{{product.title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">by {{product.brand}}</h6>
+                        <p class="card-text">${{product.price}}</p>
+                        <a href="{% url 'product' product.id %}" class="btn btn-dark">Details</a>
+                        <button data-product={{product.id}} data-action="add" type="button" class="btn btn-dark update-cart">Add to cart</button>
                     </div>
                 </div>
+                <!-- </div> -->
                 {% endfor %}       
             </div>
             <div class="pagination">

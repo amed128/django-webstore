@@ -77,10 +77,11 @@
 </div>
 {% if request.user.is_authenticated %}
 <div class="comment-form">
-    <form action="" method="POST">
+    <form class="d-flex" action="" method="POST" style="display: flex; flex-direction: column; max-width: 400px;">
         {% csrf_token %}
         <input type="text" name="body" placeholder="Write your comment here..."/>
-        <input type="submit" value="Comment"/>
+        <!-- <input class="btn" type="submit" value="Comment"/> -->
+        <button class="searchBtn btn-outline-success" type="submit">Comment</button>
     </form>
 </div>
 

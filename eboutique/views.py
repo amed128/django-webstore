@@ -35,7 +35,7 @@ def index(request):
     except:
         order = {}
 
-    paginator = Paginator(products, 3)
+    paginator = Paginator(products, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -77,19 +77,6 @@ def product(request, pk):
                 "order":order
                 }
     return render(request, "eboutique/product.html", context)
-
-
-# @login_required(login_url='login')
-# def createReview(request):
-#     form = ReviewForm()
-#     if request.method ==  'POST':
-#         form = ReviewForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('index')
-    
-#     context = {"form": form}
-#     return render(request, 'eboutique/reviewPage.html', context)
 
 def createReview(request):
     pass
