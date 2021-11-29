@@ -58,13 +58,18 @@
                         <!-- <label for="product-filter">Filter by :</label> -->
                         <select class="selectFilter" name="q" id="product-filter" onchange="this.form.submit()">
                             {% if q == "" %}
-                                <option value="">Filter by ...</option>
+                                <option value="">Filter</option>
                             {%else %}
                                 <option value="">{{q}}</option>
                             {% endif %}
                             <option value="">All Products</option>
+                            <option value="" disabled >Filter by category</option>
                             {% for collection in collections %}
                             <option value="{{collection}}">{{collection}}</option>
+                            {% endfor %}
+                            <option value="" disabled >Filter by brand</option>
+                            {% for brand in brands %}
+                            <option value="{{brand}}">{{brand}}</option>
                             {% endfor %}
                         </select>
                     </form>
