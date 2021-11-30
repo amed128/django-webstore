@@ -44,6 +44,12 @@ background-color: #c67605;
     margin-bottom: 3vh;
 }
 
+@media(max-width:767px) {
+    .cart-row-container {
+        flex-direction: column;
+    }
+}
+
 .cart-title {
     margin-bottom: 5vh
 }
@@ -87,6 +93,12 @@ background-color: #c67605;
         border-bottom-left-radius: unset;
         border-top-right-radius: 1rem
     }
+
+    .cart-qtity {
+        display: flex;
+        flex-direction: column;
+        width: min-content;
+    }
 }
 
 .summary {
@@ -100,7 +112,8 @@ background-color: #c67605;
 @media(max-width:767px) {
     .summary {
         border-top-right-radius: unset;
-        border-bottom-left-radius: 1rem
+        border-bottom-left-radius: 1rem;
+        background-color: #fff;
     }
 }
 
