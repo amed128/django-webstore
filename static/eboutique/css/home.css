@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: ;
 }
 .welcomeText {
     font-size: larger;
@@ -57,6 +58,7 @@
     /* padding: 0 1px; */
     margin: 1px 0px 0px;
     width: min-content;
+
 }
 
 .searchBtn {
@@ -142,11 +144,6 @@
 }
 
 @media (max-width: 550px) {
-    .navbar {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-    }
 
     .homeText div {
         text-align: center;
@@ -166,6 +163,15 @@
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 20px;
+    }
+
+    .filterContent {
+        max-width: 300px;
+    }
+
+    .form-control {
+        /* width: min-content; */
+        width: 240px;
     }
 
     .productWrapper {
