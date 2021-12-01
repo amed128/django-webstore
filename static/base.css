@@ -16,3 +16,11 @@
 .user-logo div {
     margin: 0px 5px;
 }
+
+.navbar.fixed {
+    position: fixed;
+    top: 0;
+    box-shadow: 5px 5px 19px 0px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    z-index: 1;
+}
