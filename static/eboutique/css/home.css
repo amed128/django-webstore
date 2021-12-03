@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: ;
+    /* background-image: ; */
 }
 .welcomeText {
     font-size: larger;
@@ -100,6 +100,19 @@
 .pagination-links a {
     color: black;
     background: white;
+}
+
+.go-up .go-up-btn {
+    position: fixed; 
+    left: 2%; 
+    top: 85%; 
+    width: 150px;
+}
+
+@media(max-width:767px) {
+    .go-up .go-up-btn {
+        width: 75px;
+    }
 }
 
 @media (max-width: 975px) {
